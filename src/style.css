@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Hussar';
+    src: url('./assets/HussarBoldWebEdition-xq5O.otf') format('woff2');
+}
+
+.header {
+    display: flex;
+
+}
+
+.restaurant-name {
+    color: darkolivegreen;
+    font-family: "Hussar";
+}
+
+.header-logo {
+    height: 100px;
+}
+
+.footer-logo {
+    height: 40px;
+}
+
+.home {
+    color: darkolivegreen;
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+    height: 500px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.branch-large {
+    height: 250px;
+    float: right;
+}
