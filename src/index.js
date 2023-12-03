@@ -2,6 +2,7 @@ import './style.css';
 import Olives from './assets/olives.svg'
 import { renderHome } from './home';
 import { renderMenu } from './menu.js';
+import { renderContact } from './contact.js';
 
 function makeHeader() {
     const header = document.createElement("header");

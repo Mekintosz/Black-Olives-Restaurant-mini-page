@@ -35,3 +35,11 @@
     height: 250px;
     float: right;
 }
+
+.menu-card {
+    display:flex;
+}
+
+.menu-card img {
+    height: 160px;
+}

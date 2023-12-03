@@ -17,6 +17,7 @@ const renderMenu = () => {
         itemImage.src = image;
 
         card.append(itemName, itemPrice, itemImage)
+        card.classList.add("menu-card");
 
         return card
     };
