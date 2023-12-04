@@ -3,22 +3,30 @@
     src: url('./assets/HussarBoldWebEdition-xq5O.otf') format('woff2');
 }
 
-.header {
-    display: flex;
-
+h1, h2, h3, p {
+    padding: 0;
+    margin: 0;
 }
 
+
+.logotype {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .restaurant-name {
-    color: darkolivegreen;
+    color: black;
     font-family: "Hussar";
 }
 
 .header-logo {
-    height: 100px;
+    height: 80px;
+    margin: 0 auto;
 }
 
 .footer-logo {
-    height: 40px;
+    height: 30px;
 }
 
 .home {
@@ -27,7 +35,7 @@
     flex-direction: column;
     background-color: antiquewhite;
     height: 500px;
-    max-width: 1500px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
@@ -42,4 +50,44 @@
 
 .menu-card img {
     height: 160px;
+}
+
+nav {
+    display: flex;
+    gap: 60px;
+}
+
+.nav-button {
+    background-color:darkolivegreen;
+    color: white;
+    width: 180px;
+    height: 40px;
+    border-radius: 12px;
+    border: 3px solid black;
+    font-size: 16px;
+}
+
+.nav-button:hover {
+
+    border-color: #ffc0cb;
+    color: pink;
+}
+
+.active {
+    background-color:black;
+    border-color: darkolivegreen;
+}
+
+.footer, .header {
+    border: 3px solid darkolivegreen;
+    border-radius: 30px;
+    margin: 0 auto;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    padding:20px 5%;
+    justify-content: space-between;
 }

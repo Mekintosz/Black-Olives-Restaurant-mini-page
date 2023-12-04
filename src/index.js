@@ -8,6 +8,9 @@ function makeHeader() {
     const header = document.createElement("header");
     header.classList.add("header");
 
+    const logotype = document.createElement('div');
+    logotype.classList.add("logotype");
+
     const restaurantLogo = document.createElement("img");
     restaurantLogo.src = Olives;
     restaurantLogo.classList.add("header-logo");
@@ -17,8 +20,9 @@ function makeHeader() {
     restaurantName.textContent = "Black Olives";
 
 
-    header.appendChild(restaurantLogo);
-    header.appendChild(restaurantName);
+    logotype.appendChild(restaurantLogo);
+    logotype.appendChild(restaurantName);
+    header.appendChild(logotype);
     header.appendChild(makeNavigation());
   
     return header;
