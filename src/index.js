@@ -88,15 +88,19 @@ function makeHeader() {
     const footer = document.createElement("footer");
     footer.classList.add("footer");
 
+    function createFooterLogo() {
     const restaurantLogo = document.createElement("img");
     restaurantLogo.src = Olives;
     restaurantLogo.classList.add("footer-logo");
+    return restaurantLogo
+    };
   
     const madeBy = document.createElement("p");
     madeBy.textContent = `Made by Mekintosz for Black Olives @ ${new Date().getFullYear()}`;
 
-    footer.appendChild(restaurantLogo);
+    footer.appendChild(createFooterLogo());
     footer.appendChild(madeBy);
+    footer.appendChild(createFooterLogo());
   
     return footer;
   }
