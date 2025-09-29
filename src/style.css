@@ -1,159 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&family=Taviraj:wght@400;800&display=swap");
+
 @font-face {
-    font-family: 'Hussar';
-    src: url('./assets/HussarBoldWebEdition-xq5O.otf') format('woff2');
+  font-family: "Hussar";
+  src: url("./assets/HussarBoldWebEdition-xq5O.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Mulish&family=Taviraj:wght@400;800&display=swap');
-
-h1, h2, h3, p {
-    padding: 0;
-    margin: 0;
+:root {
+  color-scheme: light;
+  --olive-dark: #556b2f;
+  --olive-darker: #2f3b1d;
+  --olive-soft: #fcfff2;
+  --text-primary: #121212;
+  --text-secondary: #3a3a3a;
+  --border-radius: 12px;
+  --container-width: min(1100px, 90vw);
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: "Mulish", sans-serif;
+  color: var(--text-primary);
+  line-height: 1.6;
+  background: #f6f8ed;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+p {
   margin: 0;
 }
 
-
-body {
-    font-family: "Mulish", sans-serif;
-    line-height: 1.6;
+h1 {
+  font-size: clamp(2rem, 2.4vw, 2.4rem);
+  font-family: "Taviraj", serif;
 }
 
-h1 {
-    font-size: 2.2rem;
+h2 {
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
 }
 
 h3 {
-    margin: 20px auto;
+  font-size: clamp(1.4rem, 2.2vw, 1.6rem);
 }
 
 p {
-    font-size: 1.2rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+  color: var(--text-secondary);
 }
 
-.main-info {
-    font-size: 1.4rem;
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
-.logotype {
-    display: flex;
-    flex-direction: column;
+#content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  min-height: 100vh;
 }
 
-.restaurant-name {
-    color: black;
-    font-family: 'Taviraj', serif;
+.main {
+  flex: 1;
+  padding: 4rem 0;
 }
 
-.home {
-    display: flex;
-    max-width: 60%;
-    margin: 10rem auto; 
-    gap: 10%;
-}
-
-.branch-large {
-    width: 33%;
-}
-
-.menu-card {
-    font-size: 1.4rem;
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    max-width: 70%;
-    margin: 4.2rem auto;
-    place-items: center;
-}
-
-.menu-card img {
-    height: 240px;
-}
-
-nav {
-    display: flex;
-    gap: 60px;
-}
-
-.nav-button {
-    font-family: inherit;
-    font-size: 1.1rem;
-    background-color:darkolivegreen;
-    color: white;
-    width: 180px;
-    height: 40px;
-    border-radius: 12px;
-    border: 3px solid black;
-    transition-duration: 0.6s;
-}
-
-.nav-button:hover {
-    border-radius: 12px;
-    border: 2px solid #556B2F;
-    background: linear-gradient(258deg, #556B2F 19.56%, #000 80.65%);
-}
-
-.active {
-    background-color:black;
-    border-color: darkolivegreen;
-}
-
-.footer, .header {
-    border: 2px solid darkolivegreen;
-    border-radius:12px;
-    margin: 0 auto;
-    max-width: 80%;
-    display: flex;
-    align-items: center;
-    background-color: #FCFFF2;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+.header,
+.footer {
+  max-width: var(--container-width);
+  margin: 2vh auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 5%;
+  background-color: var(--olive-soft);
+  border: 2px solid var(--olive-dark);
+  border-radius: var(--border-radius);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 8px 16px;
 }
 
 .header {
-    padding:20px 5%;
-    justify-content: space-between;
-    margin-top: 2vh;
+  gap: 2rem;
 }
 
 .footer {
-    padding: 10px 5%;
-    margin-bottom: 2vh;
-    justify-content: space-between;
-    letter-spacing: 9px;
+  margin-bottom: 2vh;
+  letter-spacing: 0.4rem;
+  gap: 1rem;
+}
+
+.logotype {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.restaurant-name {
+  color: var(--text-primary);
+  font-family: "Hussar", "Taviraj", serif;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
 }
 
 .header-logo {
-    height: 80px;
-    margin: 0 auto;
+  height: clamp(64px, 6vw, 88px);
 }
 
 .footer-logo {
-    height: 1.4rem;
-    margin: auto 0;
+  height: 1.6rem;
 }
 
-.footer p {
-    font-size: 1rem;
-    margin: 0.4rem;
+nav {
+  display: flex;
+  gap: clamp(1rem, 5vw, 3.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.title {
-    font-size: 42px;
-    padding-bottom: 20px;
+.nav-button {
+  min-width: 160px;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--text-primary);
+  background-color: var(--olive-dark);
+  color: #fff;
+  letter-spacing: 0.08em;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.text-container {
-    padding: 30px;
+.nav-button:hover,
+.nav-button:focus-visible {
+  background: linear-gradient(258deg, var(--olive-dark) 20%, #000 80%);
+  border-color: var(--olive-dark);
+  transform: translateY(-2px);
+}
+
+.nav-button.active {
+  background-color: var(--olive-darker);
+  border-color: var(--olive-dark);
+}
+
+.home {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 7vw, 6rem);
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.home-intro {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.main-info {
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+}
+
+.branch-large {
+  flex: 1 1 260px;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+.menu {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.menu-card {
+  background-color: var(--olive-soft);
+  border: 2px solid var(--olive-dark);
+  border-radius: var(--border-radius);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 16px;
+}
+
+.menu-card img {
+  height: auto;
+  border-radius: calc(var(--border-radius) - 4px);
+}
+
+.menu-price {
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .contact-container {
-    display: flex;
-    margin: 10rem auto;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 6vw, 6rem);
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 0 1 320px;
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-info p {
+  line-height: 1.5;
+}
+
+.footer p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .header,
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .nav-button {
+    flex: 1 1 auto;
+  }
+
+  .footer {
+    letter-spacing: 0.2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .home,
+  .contact-container {
     justify-content: center;
-    align-items: center;
-    gap: 6rem;
+  }
+
+  .branch-large {
+    max-width: 260px;
+  }
+
+  .menu-card {
+    padding: 1.5rem;
+  }
 }
