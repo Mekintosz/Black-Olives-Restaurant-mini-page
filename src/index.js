@@ -1,115 +1,128 @@
-import './style.css';
-import Olives from './assets/olives.svg'
-import { renderHome } from './home';
-import { renderMenu } from './menu.js';
-import { renderContact } from './contact.js';
+import "./style.css";
+import Olives from "./assets/olives.svg";
+import { renderHome } from "./home";
+import { renderMenu } from "./menu";
+import { renderContact } from "./contact";
 
-function makeHeader() {
-    const header = document.createElement("header");
-    header.classList.add("header");
+const routes = [
+  { key: "home", label: "Home", renderer: renderHome },
+  { key: "menu", label: "Menu", renderer: renderMenu },
+  { key: "contact", label: "Contact", renderer: renderContact },
+];
 
-    const logotype = document.createElement('div');
-    logotype.classList.add("logotype");
+const createHeader = () => {
+  const header = document.createElement("header");
+  header.className = "header";
+  header.append(createBranding(), createNavigation());
+  return header;
+};
 
-    const restaurantLogo = document.createElement("img");
-    restaurantLogo.src = Olives;
-    restaurantLogo.classList.add("header-logo");
-  
-    const restaurantName = document.createElement("h1");
-    restaurantName.classList.add("restaurant-name");
-    restaurantName.textContent = "Black Olives";
+const createBranding = () => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "logotype";
 
+  const logo = document.createElement("img");
+  logo.src = Olives;
+  logo.alt = "Black Olives restaurant logo";
+  logo.className = "header-logo";
 
-    logotype.appendChild(restaurantLogo);
-    logotype.appendChild(restaurantName);
-    header.appendChild(logotype);
-    header.appendChild(makeNavigation());
-  
-    return header;
-}
+  const name = document.createElement("h1");
+  name.className = "restaurant-name";
+  name.textContent = "Black Olives";
 
-  function makeNavigation() {
-    const nav = document.createElement("nav");
-  
-    const homeButton = document.createElement("button");
-    homeButton.classList.add("nav-button");
-    homeButton.textContent = "Home";
-    homeButton.addEventListener("click", (e) => {
-      if (e.target.classList.contains("active")) return;
-      setActiveButton(homeButton);
-      renderHome();
-    });
+  wrapper.append(logo, name);
+  return wrapper;
+};
 
-    const menuButton = document.createElement("button");
-    menuButton.classList.add("nav-button");
-    menuButton.textContent = "Menu";
-    menuButton.addEventListener("click", (e) => {
-      if (e.target.classList.contains("active")) return;
-      setActiveButton(menuButton);
-      renderMenu();
-    });
-  
-    const contactButton = document.createElement("button");
-    contactButton.classList.add("nav-button");
-    contactButton.textContent = "Contact";
-    contactButton.addEventListener("click", (e) => {
-      if (e.target.classList.contains("active")) return;
-      setActiveButton(contactButton);
-      renderContact();
-    });
-  
-    nav.appendChild(homeButton);
-    nav.appendChild(menuButton);
-    nav.appendChild(contactButton);
-  
-    return nav;
-  };
+const createNavigation = () => {
+  const nav = document.createElement("nav");
 
-  function setActiveButton(button) {
-    const buttons = document.querySelectorAll(".nav-button");
-  
-    buttons.forEach((button) => {
-      if (button !== this) {
-        button.classList.remove("active");
-      }
-    });
-  
-    button.classList.add("active");
-  }
+  routes.forEach(({ key, label, renderer }, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "nav-button";
+    button.dataset.route = key;
+    button.textContent = label;
+    button.addEventListener("click", () =>
+      activateRoute(key, renderer, button)
+    );
 
-  function makeMain() {
-    const main = document.createElement("main");
-    main.classList.add("main");
-    main.setAttribute("id", "main");
-    return main;
-  }
+    if (index === 0) {
+      button.classList.add("active");
+      button.setAttribute("aria-current", "page");
+    }
 
-  function makeFooter() {
-    const footer = document.createElement("footer");
-    footer.classList.add("footer");
+    nav.append(button);
+  });
 
-    function createFooterLogo() {
-    const restaurantLogo = document.createElement("img");
-    restaurantLogo.src = Olives;
-    restaurantLogo.classList.add("footer-logo");
-    return restaurantLogo
-    };
-  
-    const madeBy = document.createElement("p");
-    madeBy.textContent = `Made by Mekintosz for Black Olives @ ${new Date().getFullYear()}`;
+  return nav;
+};
 
-    footer.appendChild(createFooterLogo());
-    footer.appendChild(madeBy);
-    footer.appendChild(createFooterLogo());
-  
-    return footer;
-  }
+const createMain = () => {
+  const main = document.createElement("main");
+  main.className = "main";
+  main.id = "main";
+  return main;
+};
 
-const content = document.getElementById("content");
+const createFooter = () => {
+  const footer = document.createElement("footer");
+  footer.className = "footer";
 
-  content.appendChild(makeHeader());
-  content.appendChild(makeMain());
-  content.appendChild(makeFooter());
+  const madeBy = document.createElement("p");
+  madeBy.textContent = `Made by Mekintosz for Black Olives @ ${new Date().getFullYear()}`;
 
-setActiveButton(document.querySelector(".nav-button"));
-renderHome();
+  footer.append(createFooterLogo(), madeBy, createFooterLogo());
+  return footer;
+};
+
+const createFooterLogo = () => {
+  const logo = document.createElement("img");
+  logo.src = Olives;
+  logo.alt = "Olives icon";
+  logo.className = "footer-logo";
+  return logo;
+};
+
+const activateRoute = (key, renderer, button) => {
+  const main = document.getElementById("main");
+  if (!main) return;
+
+  setActiveButton(button);
+  renderer(main);
+  updateDocumentTitle(key);
+};
+
+const setActiveButton = (activeButton) => {
+  const buttons = document.querySelectorAll(".nav-button");
+  buttons.forEach((button) => {
+    const isActive = button === activeButton;
+    button.classList.toggle("active", isActive);
+    if (isActive) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
+  });
+};
+
+const updateDocumentTitle = (key) => {
+  const route = routes.find((entry) => entry.key === key);
+  if (!route) return;
+  document.title = `Black Olives | ${route.label}`;
+};
+
+const bootstrap = () => {
+  const content = document.getElementById("content");
+  if (!content) return;
+
+  const header = createHeader();
+  const main = createMain();
+  const footer = createFooter();
+
+  content.append(header, main, footer);
+  routes[0]?.renderer(main);
+  updateDocumentTitle(routes[0]?.key ?? "home");
+};
+
+bootstrap();
