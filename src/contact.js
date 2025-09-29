@@ -1,26 +1,36 @@
-import map from './assets/map.jpg';
+import map from "./assets/map.jpg";
 
-const renderContact = function () {
+const createContactInfo = () => {
+  const wrapper = document.createElement("section");
+  wrapper.className = "contact-info";
 
-    const address = document.createElement("p");
-    address.innerHTML = "Wybżerza Morskiego 102<br>Swinujście<br>Polska"
-    
-    const telephone = document.createElement("h3");
-    telephone.innerText = "Tel. 71-542-17-23"
-    
-    const mapImage =  document.createElement("img");
-    mapImage.src = map;
+  const telephone = document.createElement("h3");
+  telephone.textContent = "Tel. 71-542-17-23";
 
-    const contact = document.createElement("div");
-    const contactInfo = document.createElement("div");
-    contact.classList.add("contact-container");
-    contactInfo.append(telephone, address);
-    contact.append(contactInfo, mapImage);
+  const address = document.createElement("p");
+  address.innerHTML = "Wybrzeża Morskiego 102<br>Świnoujście<br>Polska";
 
+  wrapper.append(telephone, address);
+  return wrapper;
+};
 
-    const main = document.getElementById("main");
-    main.innerHTML = "";
-    main.appendChild(contact);
-} 
+const createMap = () => {
+  const image = document.createElement("img");
+  image.src = map;
+  image.alt =
+    "Map showing the location of Black Olives restaurant in Świnoujście";
+  image.loading = "lazy";
+  return image;
+};
 
-export { renderContact }
+const renderContact = (root) => {
+  const container = document.createElement("div");
+  container.className = "contact-container";
+  container.append(createContactInfo(), createMap());
+
+  const target = root ?? document.getElementById("main");
+  if (!target) return;
+  target.replaceChildren(container);
+};
+
+export { renderContact };
